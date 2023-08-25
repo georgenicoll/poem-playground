@@ -3,7 +3,7 @@ extern crate log;
 
 use async_stream::stream;
 use poem::{listener::TcpListener, Server};
-use poem_grpc::{Request, Response, RouteGrpc, Status, Streaming};
+use poem_grpc::{Request, Response, RouteGrpc, Status};
 
 poem_grpc::include_proto!("helloworld");
 
@@ -43,7 +43,7 @@ impl Greeter for GreeterService {
                 })
             }
         };
-        Ok(Response::new(Streaming::new(responses)))
+        Ok(Response::new_streaming(responses))
     }
 
 }
